@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Independence Days Worldwide",
+    "anchor": "start"
+  },
+  "width": 500,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/tomiwav/tomiwav.github.io/main/custom.geo%20(3).json",
+    "format": {"property": "features"}
+  },
+  "projection": {"type": "mercator", 
+            "scale": 100,
+            "translate": [250, 200]},
+  "transform": [
+    {
+      "lookup": "properties.name",
+      
+      "from": {
+        
+        "key": "country",
+        "fields": ["name_of_holiday"],
+        "data": {
+          "url": "https://raw.githubusercontent.com/niamhireland/COMP40610/refs/heads/main/cleaned_holidays.csv",
+          "format": {"type": "csv"}
+        }      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "fill": "lightgray",
+    "stroke": "whitesmoke",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "tooltip": [
+      {"field": "properties.name", "title": "Country"},
+      {"field": "name_of_holiday", "type": "nominal", "title": "Name of holiday"}
+    ]
+  },
+  "config": {"mark": {"invalid": null}}
+}

@@ -2,42 +2,95 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Independence Days Worldwide",
-    "anchor": "start"
+    "anchor": "middle",
+    "fontSize": 30,
+    "offset": 20
   },
   "width": 500,
-  "height": 400,
+  "height": 800,
   "data": {
     "url": "https://raw.githubusercontent.com/tomiwav/tomiwav.github.io/main/custom.geo%20(3).json",
     "format": {"property": "features"}
   },
-  "projection": {"type": "mercator", 
-            "scale": 100,
-            "translate": [250, 200]},
+  "projection": {
+    "type": "mercator", 
+    "scale": 100,
+    "translate": [250, 200]
+  },
   "transform": [
     {
       "lookup": "properties.name",
-      
       "from": {
-        
         "key": "country",
-        "fields": ["name_of_holiday"],
+        "fields": ["name_of_holiday", "independence_from"],
         "data": {
           "url": "https://raw.githubusercontent.com/niamhireland/COMP40610/refs/heads/main/cleaned_holidays.csv",
           "format": {"type": "csv"}
-        }      }
+        }
+      }
     }
   ],
-  "mark": {
-    "type": "geoshape",
-    "fill": "lightgray",
-    "stroke": "whitesmoke",
-    "strokeWidth": 0.5
-  },
-  "encoding": {
-    "tooltip": [
-      {"field": "properties.name", "title": "Country"},
-      {"field": "name_of_holiday", "type": "nominal", "title": "Name of holiday"}
-    ]
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "width": 200,
+          "height": 400,
+          "mark": "bar",
+          "transform": [
+            {
+              "aggregate": [
+                {
+                  "op": "count",
+                  "field": "independence_from",
+                  "as": "count"
+                }
+              ],
+              "groupby": ["independence_from"]
+            }
+          ],
+          "encoding": {
+            "x": {
+              "field": "count",
+              "type": "quantitative",
+              "title": "Number of Countries"
+            },
+            "y": {
+              "field": "independence_from",
+              "type": "nominal",
+              "title": "Independence From",
+              "sort": "-x"
+            },
+            "color": {
+              "field": "independence_from",
+              "type": "nominal",
+              "legend": null
+            }
+          }
+        },
+        {
+          "width": 300,
+          "height": 400,
+          "mark": {
+            "type": "geoshape",
+            "fill": "lightgray",
+            "stroke": "whitesmoke",
+            "strokeWidth": 0.5
+          },
+          "encoding": {
+            "tooltip": [
+              {"field": "properties.name", "title": "Country"},
+              {"field": "name_of_holiday", "type": "nominal", "title": "Name of Holiday"}
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "mark": {"invalid": null}
+  }
+}
   },
   "config": {"mark": {"invalid": null}}
 }

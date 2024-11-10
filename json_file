@@ -6,15 +6,13 @@
     "fontSize": 30,
     "offset": 20
   },
-  "width": 500,
-  "height": 800,
   "data": {
-    "url": "https://raw.githubusercontent.com/tomiwav/tomiwav.github.io/main/custom.geo%20(3).json",
+    "url": "https://raw.githubusercontent.com/alexabruck/worldmap-sensitive/refs/heads/master/dist/world.geo.json",
     "format": {"property": "features"}
   },
   "projection": {
-    "type": "mercator", 
-    "scale": 100,
+    "type": "mercator",
+    "scale": 500,
     "translate": [250, 200]
   },
   "transform": [
@@ -22,7 +20,7 @@
       "lookup": "properties.name",
       "from": {
         "key": "country",
-        "fields": ["name_of_holiday", "independence_from"],
+        "fields": ["name_of_holiday", "independence_from", "month"],
         "data": {
           "url": "https://raw.githubusercontent.com/niamhireland/COMP40610/refs/heads/main/cleaned_holidays.csv",
           "format": {"type": "csv"}
@@ -34,10 +32,13 @@
     {
       "hconcat": [
         {
-          "width": 200,
+          "width": 150,
           "height": 400,
           "mark": "bar",
           "transform": [
+            {
+              "filter": "datum.independence_from != null"  // Filter out null or undefined values
+            },
             {
               "aggregate": [
                 {
@@ -53,7 +54,7 @@
             "x": {
               "field": "count",
               "type": "quantitative",
-              "title": "Number of Countries"
+              "title": "Count"
             },
             "y": {
               "field": "independence_from",
@@ -69,7 +70,7 @@
           }
         },
         {
-          "width": 300,
+          "width": 500,
           "height": 400,
           "mark": {
             "type": "geoshape",
@@ -85,12 +86,46 @@
           }
         }
       ]
+    },
+    {
+      "width": 600,
+      "height": 150,
+      "mark": "bar",
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "num_countries"
+            }
+          ],
+          "groupby": ["month"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "month",
+          "type": "ordinal",
+          "title": "Month",
+          "sort": [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ]
+        },
+        "y": {
+          "field": "num_countries",
+          "type": "quantitative",
+          "title": "Number of Countries"
+        },
+        "color": {
+          "field": "month",
+          "type": "nominal",
+          "legend": null
+        }
+      }
     }
   ],
   "config": {
     "mark": {"invalid": null}
   }
-}
-  },
-  "config": {"mark": {"invalid": null}}
 }

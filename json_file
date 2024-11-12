@@ -20,7 +20,7 @@
       "lookup": "properties.name",
       "from": {
         "key": "country",
-        "fields": ["name_of_holiday", "independence_from", "month"],
+        "fields": ["name_of_holiday", "date_of_holiday", "independence_from", "month"],
         "data": {
           "url": "https://raw.githubusercontent.com/niamhireland/COMP40610/refs/heads/main/cleaned_holidays.csv",
           "format": {"type": "csv"}
@@ -37,7 +37,7 @@
           "mark": "bar",
           "transform": [
             {
-              "filter": "datum.independence_from != null"  // Filter out null or undefined values
+              "filter": "datum.independence_from != null"
             },
             {
               "aggregate": [
@@ -63,9 +63,7 @@
               "sort": "-x"
             },
             "color": {
-              "field": "independence_from",
-              "type": "nominal",
-              "legend": null
+              "value": "#1f77b4"
             }
           }
         },
@@ -81,7 +79,9 @@
           "encoding": {
             "tooltip": [
               {"field": "properties.name", "title": "Country"},
-              {"field": "name_of_holiday", "type": "nominal", "title": "Name of Holiday"}
+              {"field": "name_of_holiday", "type": "nominal", "title": "Name of Holiday"},
+              {"field": "date_of_holiday", "type": "nominal", "title": "Celebration Date"},
+              {"field": "independence_from", "type": "nominal", "title": "Independence From"}
             ]
           }
         }
@@ -110,17 +110,39 @@
           "sort": [
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
-          ]
+          ],
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelOverlap": "greedy",
+            "grid": false
+          }
         },
         "y": {
           "field": "num_countries",
           "type": "quantitative",
-          "title": "Number of Countries"
+          "title": "Count of Countries",
+          "axis": {
+            "grid": false
+          }
         },
         "color": {
-          "field": "month",
-          "type": "nominal",
-          "legend": null
+          "value": "#1f77b4"
+        }
+      }
+    },
+    {
+      "width": 600,
+      "height": 20,
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 18
+      },
+      "encoding": {
+        "text": {
+          "value": "Independence Days by Month"
         }
       }
     }

@@ -20,7 +20,7 @@
       "lookup": "properties.name",
       "from": {
         "key": "country",
-        "fields": ["name_of_holiday", "date_of_holiday", "independence_from", "month"],
+        "fields": ["name_of_holiday", "date_of_holiday", "independence_from", "month", "aggregate_colonisers"],
         "data": {
           "url": "https://raw.githubusercontent.com/niamhireland/COMP40610/refs/heads/main/cleaned_holidays.csv",
           "format": {"type": "csv"}
@@ -37,17 +37,17 @@
           "mark": "bar",
           "transform": [
             {
-              "filter": "datum.independence_from != null"
+              "filter": "datum.aggregate_colonisers != null  && datum.aggregate_colonisers != 'None'"
             },
             {
               "aggregate": [
                 {
                   "op": "count",
-                  "field": "independence_from",
+                  "field": "aggregate_colonisers",
                   "as": "count"
                 }
               ],
-              "groupby": ["independence_from"]
+              "groupby": ["aggregate_colonisers"]
             }
           ],
           "encoding": {
@@ -57,7 +57,7 @@
               "title": "Count"
             },
             "y": {
-              "field": "independence_from",
+              "field": "aggregate_colonisers",
               "type": "nominal",
               "title": "Independence From",
               "sort": "-x"
@@ -108,8 +108,8 @@
           "type": "ordinal",
           "title": "Month",
           "sort": [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
           ],
           "axis": {
             "title": null,

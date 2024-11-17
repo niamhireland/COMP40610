@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Independence Days Worldwide",
+    "text": "Global Independence Days",
     "anchor": "middle",
     "fontSize": 30,
     "offset": 20
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/alexabruck/worldmap-sensitive/refs/heads/master/dist/world.geo.json",
+    "url": "https://raw.githubusercontent.com/niamhireland/COMP40610/refs/heads/main/world.geo.json",
     "format": {"property": "features"}
   },
   "projection": {
@@ -92,6 +92,9 @@
       "height": 150,
       "mark": "bar",
       "transform": [
+        {
+          "filter": "datum.month != null"
+          },
         {
           "aggregate": [
             {

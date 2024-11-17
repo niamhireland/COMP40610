@@ -76,15 +76,15 @@
             "y": {
               "field": "aggregate_colonisers",
               "type": "nominal",
-              "title": "Independence From",
+              "title": "",
               "sort": "-x"
             },
             "color": {
               "condition": {
                 "selection": "coloniserSelection",
-                "value": "orange"
+                "value": "#2c3e50" 
               },
-              "value": "#1f77b4"
+              "value": "#4a6fa5" 
             }
           }
         },
@@ -93,7 +93,7 @@
           "height": 400,
           "mark": {
             "type": "geoshape",
-            "fill": "lightgray",
+            "fill": "#b0c0d3",  
             "stroke": "whitesmoke",
             "strokeWidth": 0.5
           },
@@ -101,9 +101,9 @@
             "color": {
               "condition": {
                 "selection": "hover",
-                "value": "orange"
+                "value": "#f5f5f5"  
               },
-              "value": "lightgray"
+              "value": "#b0c0d3"  
             },
             "tooltip": [
               {"field": "properties.name", "title": "Country"},
@@ -118,7 +118,7 @@
     {
       "width": 600,
       "height": 150,
-      "mark": "bar",
+      "mark": "line",
       "transform": [
         {
           "filter": {
@@ -154,13 +154,13 @@
         "y": {
           "field": "num_countries",
           "type": "quantitative",
-          "title": "Count of Countries",
+          "title": "",
           "axis": {
             "grid": false
           }
         },
         "color": {
-          "value": "#1f77b4"
+          "value": "#4a6fa5"  
         }
       }
     },

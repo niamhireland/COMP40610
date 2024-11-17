@@ -15,6 +15,19 @@
     "scale": 500,
     "translate": [250, 200]
   },
+  "selection": {
+    "hover": {
+      "type": "single",
+      "on": "mouseover",
+      "encodings": ["x", "y"]
+    },
+    "coloniserSelection": {
+      "type": "single",
+      "fields": ["aggregate_colonisers"],
+      "bind": {"input": "select", "options": ["None", "England", "France", "Spain", "Portugal", "Other"]},
+      "on": "click"
+    }
+  },
   "transform": [
     {
       "lookup": "properties.name",
@@ -35,10 +48,14 @@
           "width": 150,
           "height": 400,
           "mark": "bar",
+          "selection": {
+            "coloniserSelection": {
+              "type": "single",
+              "on": "click",
+              "encodings": ["y"]
+            }
+          },
           "transform": [
-            {
-              "filter": "datum.aggregate_colonisers != null  && datum.aggregate_colonisers != 'None'"
-            },
             {
               "aggregate": [
                 {
@@ -63,6 +80,10 @@
               "sort": "-x"
             },
             "color": {
+              "condition": {
+                "selection": "coloniserSelection",
+                "value": "orange"
+              },
               "value": "#1f77b4"
             }
           }
@@ -77,6 +98,13 @@
             "strokeWidth": 0.5
           },
           "encoding": {
+            "color": {
+              "condition": {
+                "selection": "hover",
+                "value": "orange"
+              },
+              "value": "lightgray"
+            },
             "tooltip": [
               {"field": "properties.name", "title": "Country"},
               {"field": "name_of_holiday", "type": "nominal", "title": "Name of Holiday"},
@@ -93,8 +121,10 @@
       "mark": "bar",
       "transform": [
         {
-          "filter": "datum.month != null"
-          },
+          "filter": {
+            "selection": "coloniserSelection"
+          }
+        },
         {
           "aggregate": [
             {

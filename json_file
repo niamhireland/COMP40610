@@ -26,8 +26,7 @@
     "coloniserSelection": {
       "type": "single",
       "fields": ["aggregate_colonisers"],
-      "bind": {"input": "select", "options": ["None", "England", "France", "Spain", "Portugal", "Other"]},
-      "on": "click"
+      "bind": {"input": "select", "options": ["None", "England", "France", "Spain", "Portugal", "Other"]}
     }
   },
   "transform": [
@@ -110,13 +109,16 @@
           },
           "encoding": {
             "color": {
-              "field": "season",
-              "type": "nominal",
-              "title": "Season",
-              "scale": {
-                "domain": ["Spring", "Summer", "Autumn", "Winter"],
-                "range": ["#2A9D8F", "#76C7C0", "#B8DE6F", "#457B9D"]
-              }
+              "condition": {
+                "test": "datum.aggregate_colonisers === coloniserSelection.aggregate_colonisers || !coloniserSelection.aggregate_colonisers",
+                "field": "season",
+                "type": "nominal",
+                "scale": {
+                  "domain": ["Spring", "Summer", "Autumn", "Winter"],
+                  "range": ["#2A9D8F", "#76C7C0", "#B8DE6F", "#457B9D"]
+                }
+              },
+              "value": "lightgray"
             },
             "tooltip": [
               {"field": "properties.name", "title": "Country"},

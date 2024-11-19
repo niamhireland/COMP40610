@@ -94,9 +94,9 @@
             "color": {
               "condition": {
                 "selection": "coloniserSelection",
-                "value": "#2c3e50"
+                "value": "#457B9D"
               },
-              "value": "#4a6fa5"
+              "value": "#264653"
             }
           }
         },
@@ -115,7 +115,7 @@
               "title": "Season",
               "scale": {
                 "domain": ["Spring", "Summer", "Autumn", "Winter"],
-                "range": ["#4CAF50", "#FFC107", "#FF5722", "#2196F3"]
+                "range": ["#2A9D8F", "#76C7C0", "#B8DE6F", "#457B9D"]
               }
             },
             "tooltip": [
@@ -173,7 +173,7 @@
           }
         },
         "color": {
-          "value": "#4a6fa5"
+          "value": "#457B9D"
         }
       }
     }

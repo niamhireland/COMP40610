@@ -26,7 +26,8 @@
     "coloniserSelection": {
       "type": "single",
       "fields": ["aggregate_colonisers"],
-      "bind": {"input": "select", "options": ["None", "England", "France", "Spain", "Portugal", "Other"]}
+      "bind": {"input": "select", "options": ["None", "England", "France", "Spain", "Portugal", "Other"]},
+      "on": "click"
     }
   },
   "transform": [
@@ -69,7 +70,7 @@
           "transform": [
             {
               "aggregate": [
-                {
+                 {
                   "op": "count",
                   "field": "aggregate_colonisers",
                   "as": "count"
@@ -93,9 +94,9 @@
             "color": {
               "condition": {
                 "selection": "coloniserSelection",
-                "value": "#457B9D"
+                "value": "#2c3e50"
               },
-              "value": "#264653"
+              "value": "#4a6fa5"
             }
           }
         },
@@ -106,26 +107,30 @@
             "type": "geoshape",
             "stroke": "whitesmoke",
             "strokeWidth": 0.5
-          },
+            },
           "encoding": {
             "color": {
-              "condition": {
-                "test": "datum.aggregate_colonisers === coloniserSelection.aggregate_colonisers || !coloniserSelection.aggregate_colonisers",
-                "field": "season",
-                "type": "nominal",
-                "scale": {
-                  "domain": ["Spring", "Summer", "Autumn", "Winter"],
-                  "range": ["#2A9D8F", "#76C7C0", "#B8DE6F", "#457B9D"]
-                }
-              },
-              "value": "lightgray"
+              "field": "season",
+              "type": "nominal",
+              "title": "Season",
+              "scale": {
+                "domain": ["Spring", "Summer", "Autumn", "Winter"],
+                "range": ["#4CAF50", "#FFC107", "#FF5722", "#2196F3"]
+              }
             },
             "tooltip": [
               {"field": "properties.name", "title": "Country"},
               {"field": "name_of_holiday", "type": "nominal", "title": "Name of Holiday"},
               {"field": "date_of_holiday", "type": "nominal", "title": "Celebration Date"},
               {"field": "independence_from", "type": "nominal", "title": "Independence From"}
-            ]
+            ],
+            "opacity": {
+              "condition": {
+                "selection": "coloniserSelection",
+                "value": 1
+              },
+              "value": 0.3
+            }
           }
         }
       ]
@@ -146,7 +151,7 @@
               "op": "count",
               "as": "num_countries"
             }
-          ],
+            ],
           "groupby": ["month"]
         }
       ],
@@ -175,7 +180,7 @@
           }
         },
         "color": {
-          "value": "#457B9D"
+          "value": "#4a6fa5"
         }
       }
     }

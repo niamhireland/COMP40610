@@ -70,7 +70,7 @@
           "transform": [
             {
               "aggregate": [
-                 {
+                {
                   "op": "count",
                   "field": "aggregate_colonisers",
                   "as": "count"
@@ -107,15 +107,16 @@
             "type": "geoshape",
             "stroke": "whitesmoke",
             "strokeWidth": 0.5
-            },
+          },
           "encoding": {
             "color": {
               "field": "season",
               "type": "nominal",
               "title": "Season",
               "scale": {
-              "domain": ["Spring", "Summer", "Autumn", "Winter"],
-              "range": ["#4C9F70", "#F29E4C", "#D1616D", "#6E8A97"]}
+                "domain": ["Spring", "Summer", "Autumn", "Winter"],
+                "range": ["#4C9F70", "#F29E4C", "#D1616D", "#6E8A97"]
+              }
             },
             "tooltip": [
               {"field": "properties.name", "title": "Country"},
@@ -139,12 +140,12 @@
       "height": 150,
       "mark": "line",
       "title": {
-      "text": "Spread of Holidays Across the Calendar Year",
-      "fontSize": 16,
-      "anchor": "middle",
-      "fontWeight": "bold",
-      "offset": 15
-    },
+        "text": "Spread of Holidays Across the Calendar Year",
+        "fontSize": 16,
+        "anchor": "middle",
+        "fontWeight": "bold",
+        "offset": 15
+      },
       "transform": [
         {
           "filter": {
@@ -157,7 +158,7 @@
               "op": "count",
               "as": "num_countries"
             }
-            ],
+          ],
           "groupby": ["month"]
         }
       ],
@@ -192,6 +193,15 @@
     }
   ],
   "config": {
-    "mark": {"invalid": null}
+    "mark": {"invalid": null},
+    "legend": {
+      "color": {
+        "title": "Season", 
+        "labelFontSize": 12, 
+        "titleFontSize": 14, 
+        "symbolSize": 100, 
+        "orient": "right" 
+      }
+    }
   }
 }

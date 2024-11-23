@@ -94,9 +94,9 @@
             "color": {
               "condition": {
                 "selection": "coloniserSelection",
-                "value": "#2c3e50"
+                "value": "#4C4C4C"
               },
-              "value": "#4a6fa5"
+              "value": "#A6A6A6"
             }
           }
         },
@@ -114,9 +114,8 @@
               "type": "nominal",
               "title": "Season",
               "scale": {
-                "domain": ["Spring", "Summer", "Autumn", "Winter"],
-                "range": ["#4CAF50", "#FFC107", "#FF5722", "#2196F3"]
-              }
+              "domain": ["Spring", "Summer", "Autumn", "Winter"],
+              "range": ["#4C9F70", "#F29E4C", "#D1616D", "#6E8A97"]}
             },
             "tooltip": [
               {"field": "properties.name", "title": "Country"},
@@ -139,6 +138,13 @@
       "width": 600,
       "height": 150,
       "mark": "line",
+      "title": {
+      "text": "Spread of Holidays Across the Calendar Year",
+      "fontSize": 16,
+      "anchor": "middle",
+      "fontWeight": "bold",
+      "offset": 15
+    },
       "transform": [
         {
           "filter": {
@@ -180,7 +186,7 @@
           }
         },
         "color": {
-          "value": "#4a6fa5"
+          "value": "#4C4C4C"
         }
       }
     }

@@ -27,6 +27,10 @@ This project was built using the following technologies:
 
 ## Visualisation decisions made 
 
+I opted to use aggregate groupings when creating the bar chart. This was done because many countries have only colonised one or two other countries, which made the bar chart very long and difficult to understand. These countries have been grouped together under the "Other" label. Additionally, some nations celebrate independence but are not actually celebrating being independent from another country. These celebrations have been grouped under the "None" label. You can see an example of this in the screenshot above, as Australia celebrates Australia Day but does not actually celebrate independence from the United Kingdom. 
+
+The above does cause users to lose some depth of insight. Offering the tooltip is a means of compensating for this. The user can select the Other or None bar and then, guided by the highlighting on the map, hover over the country to ascertain exactly which coloniser is being referred to. 
+
 ## Acknowledgements
 
 The dataset behind this project was provided by the Tidy Tuesdays project on GitHub. I performed additional cleaning and infilling on the dataset, in order to meet my project needs. The original can be viewed at: https://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-07-06/readme.md
